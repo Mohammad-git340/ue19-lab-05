@@ -25,8 +25,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/Mohammad-git340/ue19-lab-05:latest .
+          docker build -t ghcr.io/mohammad-git340/ue19-lab-05:latest .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/Mohammad-git340/ue19-lab-05:latest
+          docker push ghcr.io/mohammad-git340/ue19-lab-05:latest
