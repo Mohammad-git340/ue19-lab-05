@@ -1,4 +1,4 @@
-name: Build and Publish Docker Image
+name: Build, Scan and Publish Docker Image
 
 on:
   push:
@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      security-events: write
 
     steps:
       - name: Checkout repository
@@ -26,6 +27,14 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t ghcr.io/mohammad-git340/ue19-lab-05:latest .
+
+      - name: Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          image-ref: ghcr.io/mohammad-git340/ue19-lab-05:latest
+          format: table
+          exit-code: 0
+          vuln-type: 'os,library'
 
       - name: Push Docker image
         run: |
